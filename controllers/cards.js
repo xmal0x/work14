@@ -20,6 +20,7 @@ module.exports.deleteCard = (req, res) => {
   const owner = req.user._id;
 
   Card.findById(cardId)
+    // eslint-disable-next-line consistent-return
     .then((card) => {
       if (card.owner.toString() === owner) {
         Card.findByIdAndDelete(cardId)
