@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const JWT_KEY = require('../config.js');
+const { JWT_KEY } = require('../config.js');
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -20,7 +20,7 @@ module.exports.createUser = (req, res) => {
     })
       .then((user) => res.send({ data: user.omitPrivate() }))
       .catch((err) => res.status(500).send({ message: err }));
-  });
+  }).catch(() => res.status(500).send({ message: 'Некоректнные данные' }));
 };
 
 module.exports.getUserById = (req, res) => {

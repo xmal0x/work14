@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const JWT_KEY = require('../config.js');
+const { JWT_KEY } = require('../config.js');
 
 const app = express();
 app.use(cookieParser());
